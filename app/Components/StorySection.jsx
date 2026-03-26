@@ -333,16 +333,16 @@ export default function StorySection() {
 
                 <div className="flex flex-col items-baseline gap-8 md:gap-1">
                   <div className="flex items-baseline gap-4">
-                    <span className="font-serif font-light text-6xl md:text-[6rem] leading-none"><RollingNumber value={12} /></span>
-                    <span className="font-serif italic text-4xl text-[var(--gold)] opacity-40">/</span>
-                    <span className="font-serif text-6xl md:text-[6rem] leading-none"><RollingNumber value={2} delay={0.2} /></span>
-                    <span className="font-serif italic text-4xl text-[var(--gold)] opacity-40">/</span>
-                    <span className="font-serif text-6xl md:text-[6rem] leading-tight"><RollingNumber value={26} delay={0.4} /></span>
+                    <span className="font-['PP_Neue_Montreal'] font-light text-6xl md:text-[6rem] leading-none"><RollingNumber value={12} /></span>
+                    <span className="font-['PP_Neue_Montreal'] italic text-4xl text-[var(--gold)] opacity-40">/</span>
+                    <span className="font-['PP_Neue_Montreal'] text-6xl md:text-[6rem] leading-none"><RollingNumber value={2} delay={0.2} /></span>
+                    <span className="font-['PP_Neue_Montreal'] italic text-4xl text-[var(--gold)] opacity-40">/</span>
+                    <span className="font-['PP_Neue_Montreal'] text-6xl md:text-[6rem] leading-tight"><RollingNumber value={26} delay={0.4} /></span>
                   </div>
 
                   <div className="border-l border-[var(--gold-dim)] pl-8">
-                    <p className="font-['Montserrat'] text-[0.55rem] tracking-[0.3em] uppercase text-white/40 mb-2">Location</p>
-                    <p className="font-[Canvas] italic text-2xl md:text-4xl text-white/80">Hyderabad,Telangana</p>
+                    <p className="font-['PP_Neue_Montreal'] text-[0.55rem]  uppercase text-white/40 mb-2">Location</p>
+                    <p className="font-['PP_Neue_Montreal']  text-2xl md:text-2xl text-white/80">Hyderabad,Telangana</p>
                   </div>
                 </div>
               </div>
@@ -350,13 +350,15 @@ export default function StorySection() {
 
             {/* SECTION 4: QUOTE CARD */}
             <section className="min-h-screen flex items-start justify-start px-[10vw]">
-              <div className="we-image-reveal we-glass p-12 md:p-24 max-w-4xl w-full relative">
+              <div className=" we-glass p-12 md:p-24 max-w-4xl w-full relative">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--gold)]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-                <span className="font-sans absolute inset-0 text-[40rem] text-[var(--gold)] leading-none opacity-20 block mb-[-2rem]">“</span>
-                <p className="font-[Canvas] tracking-tight text-xl md:text-5xl text-white/90 leading-tight mb-12 relative z-10">
-                  In your light, I learn how to love. In your beauty, how to make poems.
-                </p>
+                <span className="font-['PP_Neue_Montreal'] absolute inset-0 text-[40rem] text-[var(--gold)] leading-none opacity-20 block mb-[-2rem]">“</span>
+                <TextY>
+                  <p className="font-['PP_Neue_Montreal'] tracking-tight text-xl md:text-5xl text-white/90 leading-tight mb-12 relative z-10">
+                    In your light, I learn how to love. In your beauty, how to make poems.
+                  </p>
 
+                </TextY>
               </div>
             </section>
 

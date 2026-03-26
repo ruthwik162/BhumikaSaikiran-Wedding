@@ -11,10 +11,10 @@ if (typeof window !== "undefined") {
 }
 
 const COLLECTIONS = [
-    { id: '01', title: 'The Haldi', count: '42 Photos', preview: hero.bhumi },
-    { id: '02', title: 'The Mehndi', count: '38 Photos', preview: hero.bhumicouple },
+    { id: '01', title: 'The Haldi', count: '42 Photos', preview: hero.haldhi },
+    { id: '02', title: 'The Mehndi', count: '38 Photos', preview: hero.couple2 },
     { id: '03', title: 'The Wedding', count: '124 Photos', preview: hero.BhumiHero },
-    { id: '04', title: 'Reception', count: '56 Photos', preview: hero.couple2 },
+    { id: '04', title: 'Reception', count: '56 Photos', preview: hero.bhumicouple },
 ];
 
 export default function AllImages() {
@@ -120,7 +120,7 @@ export default function AllImages() {
                                         <span className="font-mono text-[11px] text-black/30 group-hover:text-[#b39359] transition-colors">
                                             {item.id}
                                         </span>
-                                        <h3 className="font-['PP_Neue_Montreal'] text-3xl text-black font-medium uppercase tracking-tighter transition-all duration-700 group-hover:translate-x-4 md:text-6xl  group-hover:font-light">
+                                        <h3 className="font-['PP_Neue_Montreal'] text-3xl text-black font-medium  tracking-tighter transition-all duration-700 group-hover:translate-x-4 md:text-6xl  group-hover:font-light">
                                             {item.title}
                                         </h3>
                                     </div>

@@ -156,7 +156,7 @@ export default function DraggableHaldiGallery() {
       onMouseUp={handleEnd}
       onMouseLeave={handleEnd}
       onTouchEnd={handleEnd}
-      className="h-screen w-full overflow-hidden py-[12vh] bg-[#fdfbf7] h-[150vh] cursor-grab active:cursor-grabbing select-none"
+      className=" w-full overflow-hidden py-[12vh] bg-[#fdfbf7] h-[130vh] cursor-grab active:cursor-grabbing select-none"
       style={{ perspective: "1200px" }}
     >
       {/* Background */}
@@ -169,6 +169,12 @@ export default function DraggableHaldiGallery() {
           <path ref={blobRef} transform="translate(100 100)" d="M47.5,-76.1C59.6,-70.5,66.4,-53.4,72.4,-37.2C78.4,-21,83.5,-5.7,81.4,8.9C79.3,23.5,70,37.3,58.8,47.8C47.6,58.3,34.5,65.5,20.7,69.5C6.9,73.5,-7.6,74.3,-21.5,70.5C-35.4,66.7,-48.7,58.3,-58.5,47C-68.3,35.7,-74.6,21.5,-76.9,6.5C-79.2,-8.5,-77.5,-24.3,-69.8,-37.5C-62.1,-50.7,-48.3,-61.3,-34.5,-66.1C-20.7,-70.9,-6.9,-70,-1.1,-71.4C15.5,-69.5,31.1,-83.7,44.7,-76.4Z" />
         </svg>
       </div>
+      <div className="absolute bottom-10 left-5 font-['PP_Neue_Montreal']  flex items-center justify-center pointer-events-none">
+        <h2 className="leading-tight  text-[1.2vw]  text-[#252525] max-w-xl">
+          This page shows you the purest emoation and it continues throughout the journey they mad 
+        </h2>
+      </div>
+      
       <div className="absolute top-12 left-12 z-50">
         <p className="font-['PP_Neue_Montreal'] text-[12px] tracking-[0.3em] uppercase text-[#c9a96e] mb-2">The Golden Ceremony</p>
         <h3 className="text-4xl font-[Canvas] text-black">DRAG TO EXPLORE</h3>
@@ -194,7 +200,7 @@ export default function DraggableHaldiGallery() {
             }}
           >
             <div
-              className="relative  transition-all duration-500 group-hover:shadow-2xl"
+              className="relative  "
             >
               <div className="relative aspect-[4/5] overflow-hidden">
                 <Image

@@ -57,7 +57,7 @@ export default function InteractiveGallery() {
             validItems.forEach((el, i) => {
                 // 1. REVEAL 
                 gsap.fromTo(el,
-                    { clipPath: 'inset(100% 0% 0% 0%)', opacity: 0, scale: 1.05 },
+                    { clipPath: 'inset(90% 90% 90% 90%)', opacity: 1, scale: 1.05 },
                     {
                         clipPath: 'inset(0% 0% 0% 0%)',
                         opacity: 1,

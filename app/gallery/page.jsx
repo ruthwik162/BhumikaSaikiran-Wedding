@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
 import Image from "next/image";
 import { hero } from "@/public/assets/assets";
+import TextY from "../Components/TextY";
 
 export default function CinematicGallery() {
   const containerRef = useRef(null);
@@ -41,12 +42,12 @@ export default function CinematicGallery() {
   }, []);
 
   const GALLERY_ITEMS = [
-    { src: hero.bhumi, label: 'THE UNION', top: '12%', left: '8%', w: { desktop: '22vw', mobile: '55vw' }, z: 10, desc: "A celebration of coming together in perfect harmony." },
-    { src: hero.bhumicouple, label: 'HAIG RD', top: '42%', left: '5%', w: { desktop: '26vw', mobile: '65vw' }, z: 20, desc: "The quiet moments captured on the historic streets of Haig Road." },
-    { src: hero.BhumiHero, label: 'RADIANCE', top: '10%', left: '42%', w: { desktop: '20vw', mobile: '50vw' }, z: 15, desc: "Basking in the soft glow of the golden hour." },
-    { src: hero.couple2, label: 'ETERNITY', top: '48%', left: '38%', w: { desktop: '24vw', mobile: '60vw' }, z: 25, desc: "A timeless gaze that speaks volumes of the journey ahead." },
-    { src: hero.couple3, label: 'WHISPERS', top: '22%', left: '70%', w: { desktop: '22vw', mobile: '55vw' }, z: 10, desc: "Intimate conversations shared in the silence of the garden." },
-    { src: hero.couple2, label: 'LLOYD', top: '60%', left: '68%', w: { desktop: '26vw', mobile: '65vw' }, z: 30, desc: "Modern elegance meets classic romance at the Lloyd estate." },
+    { src: hero.bhumi, label: 'THE UNION', top: '5%', left: '8%', w: { desktop: '22vw', mobile: '55vw' }, z: 10, ratio: '4/5', desc: "In a moment washed in turmeric and laughter, two worlds lean closer—soft glances, quiet smiles, and a promise that begins before words are ever spoken." },
+    { src: hero.bhumicouple, label: 'HAIG RD', top: '42%', left: '5%', w: { desktop: '26vw', mobile: '65vw' }, z: 20, ratio: '4/5', desc: "Between fleeting footsteps and lingering looks, the streets hold their story—unplanned, unfiltered, and beautifully theirs." },
+    { src: hero.BhumiHero, label: 'RADIANCE', top: '10%', left: '42%', w: { desktop: '40vw', mobile: '50vw' }, z: 15, ratio: '16/9', desc: "Golden light rests gently on her skin, as if the sun itself paused—just to witness her becoming." },
+    { src: hero.couple2, label: 'ETERNITY', top: '48%', left: '30%', w: { desktop: '44vw', mobile: '60vw' }, z: 25, ratio: '16/9', desc: "A single gaze stretches beyond time—where everything fades, except the quiet certainty of forever." },
+    { src: hero.couple3, label: 'WHISPERS', top: '22%', left: '70%', w: { desktop: '22vw', mobile: '55vw' }, z: 10, ratio: '4/5', desc: "Between laughter and silence, their words soften into something only they understand." },
+    { src: hero.couple2, label: 'LLOYD', top: '60%', left: '68%', w: { desktop: '46vw', mobile: '65vw' }, z: 30, ratio: '16/9', desc: "Elegance lingers in every frame—where tradition meets presence, and every detail speaks without trying." },
   ];
 
   const handleImageClick = (e, item) => {
@@ -197,11 +198,15 @@ export default function CinematicGallery() {
               zIndex: item.z,
             }}
           >
-            <div className="relative overflow-hidden shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+            <div
+              className="relative overflow-hidden shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]"
+              style={{ aspectRatio: item.ratio }}
+            >
               <Image
                 src={item.src}
                 alt={item.label}
-                className="w-full h-auto object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
+                fill
+                className="object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
               />
             </div>
             <div className="mt-4 flex justify-between text-[10px] font-medium tracking-widest uppercase opacity-60">
@@ -215,7 +220,7 @@ export default function CinematicGallery() {
       {/* Fullscreen Detail Overlay */}
       <div
         ref={overlayRef}
-        className="fixed inset-0 z-[200] hidden bg-[#faf7f2]/98 backdrop-blur-sm items-center justify-center p-6 md:p-20 opacity-0"
+        className="fixed inset-0 z-[200] hidden bg-[#faf7f2]/50 backdrop-blur-sm items-center justify-center p-6 md:p-20 opacity-0"
       >
 
 
@@ -227,7 +232,10 @@ export default function CinematicGallery() {
             >
               Close [ESC]
             </button>
-            <div className="relative aspect-[4/5] w-full shadow-2xl overflow-hidden">
+            <div
+              className="relative overflow-hidden shadow-2xl"
+              style={{ aspectRatio: selectedItem.ratio || "4/5" }}
+            >
               <Image
                 src={selectedItem.src}
                 alt={selectedItem.label}
@@ -237,10 +245,12 @@ export default function CinematicGallery() {
             </div>
             <div className="flex flex-col gap-6">
               <p className="text-[10px] opacity-40 uppercase tracking-[0.3em]">Archive Collection / 2026</p>
-              <h2 className="text-5xl md:text-8xl font-[Canvas] leading-none text-black lowercase">{selectedItem.label}</h2>
-              <p className="text-sm md:text-base leading-relaxed text-black/70 max-w-md">
-                {selectedItem.desc}
-              </p>
+              <h2 className="text-5xl md:text-8xl font-[Canvas] leading-tight text-black lowercase">{selectedItem.label}</h2>
+              <TextY delay={0.4}>
+                <p className="text-sm md:text-base leading-tight text-black/70 max-w-md">
+                  {selectedItem.desc}
+                </p>
+              </TextY>
               <div className="mt-4 flex gap-3 text-black">
                 <span className="px-4 py-2 border border-black/10 text-[9px] rounded-full uppercase tracking-widest">Metadata: 400 ISO</span>
                 <span className="px-4 py-2 border border-black/10 text-[9px] rounded-full uppercase tracking-widest">Format: Digital</span>
