@@ -1,5 +1,5 @@
 {
-  "name": "saikiranbhumika",
+  "name": "studio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,22 +10,27 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@react-three/drei": "^10.7.7",
-    "@react-three/fiber": "^9.5.0",
+    "@studio-freight/lenis": "^1.0.42",
     "@studio-freight/react-lenis": "^0.0.47",
-    "@types/three": "^0.183.1",
-    "framer-motion": "^12.38.0",
-    "gsap": "^3.14.2",
-    "next": "16.2.1",
-    "next-view-transitions": "^0.3.5",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "three": "^0.183.2"
+    "@vercel/analytics": "^1.5.0",
+    "body-scroll-lock": "^4.0.0-beta.0",
+    "framer-motion": "^12.23.24",
+    "gsap": "^3.13.0",
+    "lucide-react": "^0.546.0",
+    "next": "^16.1.6",
+    "next-view-transitions": "^0.3.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.5.0",
+    "react-remove-scroll": "^2.7.1",
+    "react-router-dom": "^7.9.4",
+    "split-type": "^0.3.4"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
-    "eslint-config-next": "16.2.1",
+    "eslint-config-next": "16.0.6",
     "tailwindcss": "^4"
   }
 }
