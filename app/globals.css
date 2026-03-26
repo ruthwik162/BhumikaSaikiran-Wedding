@@ -24,3 +24,78 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* globals.css */
+@font-face {
+  font-family: 'Canvas';
+  src: url('/fonts/made-canvas-light-webfont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ivy';
+  src: url('/fonts/Ivy.otf') format('otf');
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MyFont2';
+  src: url('/fonts/Lausanne-500.woff2') format('woff2');
+
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: 'Alliance-semibold';
+  src: url('/fonts/alliance-plattsemibold.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes grain {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  10% {
+    transform: translate(-1%, -1%);
+  }
+
+  30% {
+    transform: translate(1%, -2%);
+  }
+
+  50% {
+    transform: translate(-2%, 1%);
+  }
+
+  70% {
+    transform: translate(2%, 2%);
+  }
+
+  90% {
+    transform: translate(-1%, 0%);
+  }
+}
+
+/* Applying a slight jitter to the noise makes it feel like real film */
+.fixed.inset-0.pointer-events-none.z-\[9999\] {
+  animation: grain 0.8s steps(2) infinite;
+  width: 120%;
+  /* Extra width/height to prevent edges showing during jitter */
+  height: 120%;
+  top: -10%;
+  left: -10%;
+}
