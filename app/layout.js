@@ -21,6 +21,8 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const textureUrl = "https://plus.unsplash.com/premium_photo-1667811951673-3b3e8d6742c7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bm9pc2UlMjB0ZXh0dXJlfGVufDB8fDB8fHww";
+
   return (
     <html
       lang="en"
@@ -31,16 +33,18 @@ export default function RootLayout({ children }) {
         <ViewTransitions>
           <LenisProvider>
 
-            {/* CINEMATIC NOISE */}
+            {/* ── CINEMATIC TEXTURE OVERLAY ── */}
             <div
-              className="fixed inset-0 pointer-events-none z-[9999] opacity-[0.05] mix-blend-multiply"
+              className="fixed inset-0 pointer-events-none z-[9999] opacity-[0.04] mix-blend-overlay transform-gpu"
               style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                backgroundImage: `url("${textureUrl}")`,
+                backgroundRepeat: "repeat",
+                backgroundSize: "250px", // Maintains a fine-grain look
               }}
             />
 
-            {/* VIGNETTE */}
-            <div className="fixed inset-0 pointer-events-none z-[1] bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.03)_100%)]" />
+            {/* ── VIGNETTE ── */}
+            <div className="fixed inset-0 pointer-events-none z-[1] bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.05)_100%)]" />
 
             <Navbar />
 
