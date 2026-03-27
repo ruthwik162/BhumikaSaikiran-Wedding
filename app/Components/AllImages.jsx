@@ -5,9 +5,10 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { hero } from '@/public/assets/assets';
+import { CustomEase } from 'gsap/CustomEase';
 
 if (typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger,CustomEase);
 }
 
 const COLLECTIONS = [
@@ -22,6 +23,10 @@ export default function AllImages() {
     const leftImageContainerRef = useRef(null);
     const [activeItem, setActiveItem] = useState(COLLECTIONS[0]);
 
+    CustomEase.create(
+        "hope",
+        "M0,0 C0.071,0.505 0.192, 0.726 0.318, 0.852 0.45, 0.984 0.504, 1 1,1"
+    )
     useEffect(() => {
         const ctx = gsap.context(() => {
             // 1. Line-by-line reveal for the heading
@@ -31,7 +36,7 @@ export default function AllImages() {
                 opacity: 0,
                 duration: 1.5,
                 stagger: 0.1,
-                ease: "expo.out",
+                ease: "hope",
                 scrollTrigger: {
                     trigger: containerRef.current,
                     start: "top 80%",
@@ -41,7 +46,7 @@ export default function AllImages() {
             // 2. Parallax Scale for the main preview container
             gsap.to(".preview-img", {
                 scale: 1.2,
-                ease: "none",
+                ease: "hope",
                 scrollTrigger: {
                     trigger: containerRef.current,
                     start: "top bottom",
@@ -57,13 +62,13 @@ export default function AllImages() {
     // 3. Handle Hover Transition (The "React Bit" magic)
     const handleMouseEnter = (item) => {
         if (activeItem.id === item.id) return;
-        
+
         setActiveItem(item);
 
         // Animate the image container for a "flash" or "slide" effect
         const tl = gsap.timeline();
-        tl.fromTo(".preview-img-wrapper", 
-            { clipPath: "inset(100% 0% 0% 0%)" },
+        tl.fromTo(".preview-img-wrapper",
+            { clipPath: "inset(70% 70% 70% 70%)" },
             { clipPath: "inset(0% 0% 0% 0%)", duration: 0.8, ease: "expo.out" }
         );
     };
@@ -73,11 +78,11 @@ export default function AllImages() {
             ref={containerRef}
             className="relative min-h-screen w-full overflow-hidden bg-[#f0eee9] py-20 selection:bg-[#b39359] selection:text-white"
         >
-            <div className="mx-auto grid h-full w-full max-w-[1440px] grid-cols-1 md:grid-cols-12">
+            <div className="mx-auto grid h-full w-full max-w-[1440px] relative grid-cols-1 md:grid-cols-12">
 
                 {/* ─── LEFT SIDE: CINEMATIC PREVIEW ─── */}
-                <div className="relative col-span-1 h-[70vh] md:col-span-6 md:h-[90vh] px-6 md:px-12 sticky top-10">
-                    <div ref={leftImageContainerRef} className="relative h-full w-full overflow-hidden rounded-sm bg-stone-300">
+                <div className="relative col-span-1 h-[70vh] md:col-span-6 md:h-[95vh] px-6 md:px-12  top-10">
+                    <div ref={leftImageContainerRef} className="relative h-full w-full overflow-hidden ">
                         <div className="preview-img-wrapper relative h-full w-full overflow-hidden">
                             <Image
                                 src={activeItem.preview}
@@ -93,7 +98,7 @@ export default function AllImages() {
                 </div>
 
                 {/* ─── RIGHT SIDE: INTERACTIVE LINKS ─── */}
-                <div className="col-span-1 flex flex-col justify-between px-6 py-12 md:col-span-6 md:px-16 md:py-[5vh]">
+                <div className="col-span-1 flex flex-col justify-end items-start  px-6 py-12 md:col-span-6 md:px-16 md:py-[5vh]">
 
                     <div className="max-w-md">
                         <div className="overflow-hidden mb-4">
@@ -115,7 +120,7 @@ export default function AllImages() {
                                 onMouseEnter={() => handleMouseEnter(item)}
                                 className="group relative border-b border-black/10 transition-all duration-500 hover:border-black cursor-none"
                             >
-                                <a href="#" className="flex items-center justify-between py-8 md:py-10">
+                                <a href="#" className="flex items-center justify-between py-3 md:py-5">
                                     <div className="flex items-center space-x-8">
                                         <span className="font-mono text-[11px] text-black/30 group-hover:text-[#b39359] transition-colors">
                                             {item.id}
@@ -134,7 +139,7 @@ export default function AllImages() {
                                         </span>
                                     </div>
                                 </a>
-                                
+
                                 {/* The "React Bit" Bottom Line */}
                                 <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#b39359] transition-all duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:w-full" />
                             </div>

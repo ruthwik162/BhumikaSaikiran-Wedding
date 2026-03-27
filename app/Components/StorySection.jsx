@@ -9,9 +9,10 @@ import { hero } from '@/public/assets/assets';
 import { RollingNumber } from './RollingNumber';
 import InteractiveGallery from './InteractiveGallery';
 import TextY from './TextY';
+import { CustomEase } from 'gsap/CustomEase';
 
 if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger,CustomEase);
 }
 
 export default function StorySection() {
@@ -58,9 +59,17 @@ export default function StorySection() {
         }
       });
 
+      CustomEase.create(
+        "hope",
+        "M0,0 C0.071,0.505 0.192, 0.726 0.318, 0.852 0.45, 0.984 0.504, 1 1,1"
+      )
+
       // ── IMAGE CLIP REVEALS (9:16 Tiles) ──────────────────────────────────
       // ── CENTER REVEAL ANIMATION ──────────────────────────────────────────
       const mm = gsap.matchMedia();
+
+
+
 
       mm.add(
         {
@@ -89,7 +98,7 @@ export default function StorySection() {
               {
                 clipPath: 'inset(0% 0% 0% 0%)',
                 duration: 1.8,
-                ease: 'expo.inOut'
+                ease: 'hope'
               }
             ).fromTo(
               img,

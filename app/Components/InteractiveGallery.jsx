@@ -1,28 +1,117 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { hero } from '@/public/assets/assets';
+import { CustomEase } from 'gsap/CustomEase';
+
 
 if (typeof window !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger, CustomEase);
 }
 
 const images = [
-    // Dramatically spread out the 'top' positions for more space
-    { src: hero.bhumicouple, size: 'small', pos: 'top-[5%] left-[8%]', speed: 0.01, scrollSpeed: -800, label: 'THE BEGINNING' },
-    { src: hero.couple2, size: 'large', pos: 'top-[5%] right-[5%]', speed: 0.03, scrollSpeed: -400, label: 'GOLDEN RADIANCE' },
-    { src: hero.couple3, size: 'medium', pos: 'top-[55%] left-[1%]', speed: 0.02, scrollSpeed: -600, label: 'LAUGHTER & LIGHT' },
-    { src: hero.bhumi, size: 'small', pos: 'top-[85%] right-[12%]', speed: 0.05, scrollSpeed: -300, label: 'SOFT WHISPERS' },
-    { src: hero.BhumiHero, size: 'large', pos: 'top-[115%] left-[5%]', speed: 0.02, scrollSpeed: -500, label: 'ETERNAL PROMISE' },
-    { src: hero.couple2, size: 'small', pos: 'top-[145%] right-[20%]', speed: 0.04, scrollSpeed: -250, label: 'THE UNION' },
+    {
+        src: hero.bhumicouple,
+        size: {
+            mobile: 'w-[35vw]',
+            desktop: 'w-[12vw]'
+        },
+        pos: {
+            mobile: '-top-[70vw] left-[10%]',
+            desktop: 'top-[5%] left-[8%]'
+        },
+        speed: 0.01,
+        
+        scrollSpeed: -800,
+        label: 'THE BEGINNING'
+    },
+    {
+        src: hero.couple2,
+        size: {
+            mobile: 'w-[38vw]',
+            desktop: 'w-[15vw]'
+        },
+        pos: {
+            mobile: 'top-[-50vw] right-[5%]',
+            desktop: 'top-[5%] right-[5%]'
+        },
+        
+        speed: 0.03,
+        scrollSpeed: -400,
+        label: 'GOLDEN RADIANCE'
+    },
+    {
+        src: hero.couple3,
+        size: {
+            mobile: 'w-[30vw]',
+            desktop: 'w-[22vw]'
+        },
+        pos: {
+            mobile: 'top-[15%] left-[5%]',
+            desktop: 'top-[55%] left-[40%]'
+        },
+        speed: 0.02,
+        scrollSpeed: -600,
+        label: 'LAUGHTER & LIGHT'
+    },
+    {
+        src: hero.bhumi,
+        size: {
+            mobile: 'w-[20vw]',
+            desktop: 'w-[12vw]'
+        },
+        pos: {
+            mobile: 'top-[80%] right-[10%]',
+            desktop: 'top-[85%] right-[12%]'
+        },
+        speed: 0.05,
+        scrollSpeed: -300,
+        label: 'SOFT WHISPERS'
+    },
+    {
+        src: hero.BhumiHero,
+        size: {
+            mobile: 'w-[41vw]',
+            desktop: 'w-[14vw]'
+        },
+        pos: {
+            mobile: 'bottom-[-200vw] left-[5%]',
+            desktop: 'top-[115%] left-[5%]'
+        },
+        speed: 0.02,
+        scrollSpeed: -500,
+        label: 'ETERNAL PROMISE'
+    },
+    {
+        src: hero.couple2,
+        size: {
+            mobile: 'w-[55vw]',
+            desktop: 'w-[12vw]'
+        },
+        pos: {
+            mobile: 'top-[140%] right-[10%]',
+            desktop: 'top-[145%] right-[20%]'
+        },
+        speed: 0.04,
+        scrollSpeed: -250,
+        label: 'THE UNION'
+    },
 ];
 
 export default function InteractiveGallery() {
     const containerRef = useRef(null);
     const itemsRef = useRef([]);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const check = () => setIsMobile(window.innerWidth < 768);
+        check();
+        window.addEventListener('resize', check);
+        return () => window.removeEventListener('resize', check);
+    }, []);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -34,6 +123,11 @@ export default function InteractiveGallery() {
             const skewSetter = gsap.quickSetter(validItems, "skewY", "deg");
             const clamp = gsap.utils.clamp(0, 0);
 
+            CustomEase.create(
+                "hope",
+                "M0,0 C0.071,0.505 0.192, 0.726 0.318, 0.852 0.45, 0.984 0.504, 1 1,1"
+            )
+
             ScrollTrigger.create({
                 onUpdate: (self) => {
                     let skew = clamp(self.getVelocity() / -150);
@@ -41,10 +135,10 @@ export default function InteractiveGallery() {
                     if (Math.abs(skew) > Math.abs(proxy.skew)) {
                         proxy.skew = skew;
                         gsap.to(proxy, {
-                            skew: 0, 
-                            duration: 1.2, 
-                            ease: "power3.out", 
-                            overwrite: true, 
+                            skew: 0,
+                            duration: 1.2,
+                            ease: "hope",
+                            overwrite: true,
                             onUpdate: () => skewSetter(proxy.skew)
                         });
                     }
@@ -63,7 +157,7 @@ export default function InteractiveGallery() {
                         opacity: 1,
                         scale: 1,
                         duration: 1.8,
-                        ease: 'expo.out',
+                        ease: 'hope',
                         scrollTrigger: {
                             trigger: el,
                             start: 'top 95%',
@@ -113,10 +207,10 @@ export default function InteractiveGallery() {
                 <div
                     key={idx}
                     ref={el => itemsRef.current[idx] = el}
-                    className={`absolute pointer-events-auto group ${img.pos} ${img.size === 'small' ? 'w-[20vw] md:w-[12vw]' :
-                        img.size === 'medium' ? 'w-[35vw] md:w-[22vw]' :
-                            'w-[55vw] md:w-[35vw]'
-                        }`}
+                    className={`absolute pointer-events-auto group 
+            ${isMobile ? img.pos.mobile : img.pos.desktop} 
+            ${isMobile ? img.size.mobile : img.size.desktop}
+          `}
                 >
                     {/* PREMIUM UI STYLE: Elegant border and rich deep shadow */}
                     <div className="bg-white  shadow-[0_15px_60px_rgba(201,169,110,0.2)] transform-gpu transition-shadow duration-700 hover:shadow-[0_30px_90px_rgba(201,169,110,0.4)]">
@@ -133,7 +227,7 @@ export default function InteractiveGallery() {
 
                             {/* Organic Texture Overlay - Golden hue burn */}
                             <div className="absolute inset-0 bg-[#c9a96e]/10 mix-blend-color-burn pointer-events-none opacity-50 transition-opacity duration-700 group-hover:opacity-20" />
-                            
+
                             {/* Cinematic Grain Overlay */}
                             <div className="absolute inset-0 pointer-events-none opacity-[0.04] mix-blend-overlay bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')]" />
 

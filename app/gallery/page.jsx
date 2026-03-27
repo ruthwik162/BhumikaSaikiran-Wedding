@@ -92,7 +92,9 @@ export default function CinematicGallery() {
     );
 
     const update = () => {
-      const ease = dragging.current ? 0.12 : 0.05;
+      const ease = dragging.current
+        ? (isMobile ? 0.25 : 0.12)
+        : (isMobile ? 0.12 : 0.05);
       current.current.x += (target.current.x - current.current.x) * ease;
       current.current.y += (target.current.y - current.current.y) * ease;
 
@@ -127,23 +129,28 @@ export default function CinematicGallery() {
     last.current.mouseY = point.clientY;
 
     gsap.to([itemsRef.current, scrollContentRef.current], {
-      scale: 0.96,
-      duration: 0.4,
-      ease: "power2.out",
+      scale: isMobile ? 0.94 : 0.96,
+      duration: 0.3,
+      ease: "power3.out",
     });
   };
 
   const handleMove = (e) => {
     if (!dragging.current) return;
+
     const point = e.touches ? e.touches[0] : e;
 
     if (last.current.mouseX !== null) {
       const dx = point.clientX - last.current.mouseX;
       const dy = point.clientY - last.current.mouseY;
 
-      movementTotal.current += Math.abs(dx) + Math.abs(dy); // Calculate distance moved
-      target.current.x += dx * 0.85;
-      target.current.y += dy * 0.85;
+      movementTotal.current += Math.abs(dx) + Math.abs(dy);
+
+      // 🔥 MUCH FASTER ON MOBILE
+      const speed = isMobile ? 2.4 : 0.9;
+
+      target.current.x += dx * speed;
+      target.current.y += dy * speed;
     }
 
     last.current.mouseX = point.clientX;
@@ -167,7 +174,10 @@ export default function CinematicGallery() {
       onMouseUp={handleEnd}
       onMouseLeave={handleEnd}
       onTouchStart={handleStart}
-      onTouchMove={(e) => { e.preventDefault(); handleMove(e); }}
+      onTouchMove={(e) => {
+        if (dragging.current) e.preventDefault();
+        handleMove(e);
+      }}
       onTouchEnd={handleEnd}
       className="h-screen w-full overflow-hidden bg-[#faf7f2] cursor-grab active:cursor-grabbing select-none relative"
       style={{ perspective: "1200px" }}
@@ -228,12 +238,12 @@ export default function CinematicGallery() {
           <div ref={detailContentRef} className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 relative items-center">
             <button
               onClick={closeDetail}
-              className="absolute top-10 right-10 uppercase tracking-[0.2em] text-[10px] border-b border-black pb-1 opacity-100 text-black transition-opacity"
+              className="absolute md:top-10 top-5 right-1 md:right-10 uppercase tracking-[0.2em] text-[10px] border-b border-black pb-1 opacity-100 text-black transition-opacity"
             >
               Close [ESC]
             </button>
             <div
-              className="relative overflow-hidden shadow-2xl"
+              className="relative overflow-hidden shadow-2xl w-[70%] "
               style={{ aspectRatio: selectedItem.ratio || "4/5" }}
             >
               <Image
@@ -245,9 +255,9 @@ export default function CinematicGallery() {
             </div>
             <div className="flex flex-col gap-6">
               <p className="text-[10px] opacity-40 uppercase tracking-[0.3em]">Archive Collection / 2026</p>
-              <h2 className="text-5xl md:text-8xl font-[Canvas] leading-tight text-black lowercase">{selectedItem.label}</h2>
-              <TextY delay={0.4}>
-                <p className="text-sm md:text-base leading-tight text-black/70 max-w-md">
+              <h2 className="text-2xl md:text-8xl font-[Canvas] leading-tight text-black lowercase">{selectedItem.label}</h2>
+              <TextY delay={0.4} animateOnScroll={false} >
+                <p className="text-[13px] md:text-base leading-tight text-black/70 max-w-md">
                   {selectedItem.desc}
                 </p>
               </TextY>
