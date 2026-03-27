@@ -15,36 +15,25 @@ export default function DraggableHaldiGallery() {
   const scrollContentRef = useRef(null);
   const itemsRef = useRef([]);
   const blobRef = useRef(null);
-
   const [isMobile, setIsMobile] = useState(false);
 
-  // ✅ Detect device
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
     check();
     window.addEventListener('resize', check);
+    CustomEase.create("boutique", "M0,0 C0.165,0.84 0.44,1 1,1");
     return () => window.removeEventListener('resize', check);
   }, []);
 
-  // ✅ HOPE EASE
-  useEffect(() => {
-    CustomEase.create(
-      "hope",
-      "M0,0 C0.071,0.505 0.192,0.726 0.318,0.852 0.45,0.984 0.504,1 1,1"
-    );
-  }, []);
-
-  // Layout
   const HALDI_ITEMS = [
-    { src: hero.bhumi, label: 'THE BLOSSOM', top: '12%', left: '8%', w: isMobile ? '60vw' : '15vw', z: 10 },
-    { src: hero.bhumicouple, label: 'PURE GOLD', top: '40%', left: '5%', w: isMobile ? '70vw' : '26vw', z: 20 },
-    { src: hero.couple2, label: 'TRADITION', top: '5%', left: '45%', w: isMobile ? '65vw' : '24vw', z: 15 },
-    { src: hero.couple3, label: 'KINETIC', top: '48%', left: '40%', w: isMobile ? '75vw' : '28vw', z: 30 },
-    { src: hero.BhumiHero, label: 'ETHEREAL', top: '25%', left: '70%', w: isMobile ? '60vw' : '20vw', z: 10 },
-    { src: hero.couple2, label: 'LAUGHTER', top: '65%', left: '68%', w: isMobile ? '70vw' : '25vw', z: 25 },
+    { src: hero.bhumi, label: 'THE BLOSSOM', top: '15%', left: '10%', w: isMobile ? '55vw' : '18vw', z: 10 },
+    { src: hero.bhumicouple, label: 'PURE GOLD', top: '45%', left: '5%', w: isMobile ? '65vw' : '28vw', z: 40 },
+    { src: hero.couple2, label: 'TRADITION', top: '8%', left: '48%', w: isMobile ? '60vw' : '22vw', z: 20 },
+    { src: hero.couple3, label: 'KINETIC', top: '52%', left: '42%', w: isMobile ? '70vw' : '26vw', z: 50 },
+    { src: hero.BhumiHero, label: 'ETHEREAL', top: '28%', left: '72%', w: isMobile ? '55vw' : '19vw', z: 15 },
+    { src: hero.couple2, label: 'LAUGHTER', top: '68%', left: '70%', w: isMobile ? '65vw' : '24vw', z: 30 },
   ];
 
-  // Physics
   const target = useRef({ x: 0, y: 0 });
   const current = useRef({ x: 0, y: 0 });
   const last = useRef({ x: 0, y: 0, mouseX: null, mouseY: null });
@@ -52,35 +41,36 @@ export default function DraggableHaldiGallery() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // 1. CINEMATIC ENTRANCE
+      gsap.from(".gallery-item", {
+        scale: 1.1,
+        opacity: 0,
+        y: 100,
+        rotateY: 25,
+        duration: 2,
+        stagger: 0.1,
+        ease: "expo.out"
+      });
 
-      // Entrance
-      gsap.fromTo(".gallery-item",
-        { scale: 0.8, opacity: 0, y: 50 },
-        { scale: 1, opacity: 1, y: 0, duration: 1.2, stagger: 0.08, ease: "expo.out" }
-      );
-
-      // Blob animation
-      gsap.to(blobRef.current, {
-        duration: 8,
-        attr: {
-          d: "M44.7,-76.4C58.3,-69.2,70.1,-57.4,77.6,-43.3C85.2,-29.2,88.5,-12.7,86.4,3.2C84.3,19.1,76.8,34.4,66.2,46.1C55.6,57.8,42,65.9,28,71.1C14,76.3,-0.4,78.7,-14.9,76.5C-29.4,74.3,-44,67.6,-56.4,57.3C-68.8,47,-79.1,33.1,-83.4,17.7C-87.7,2.3,-86.1,-14.6,-79.4,-29.3C-72.7,-44,-60.9,-56.5,-47.2,-63.8Z"
-        },
+      // 2. FLOATING AMBIENCE
+      gsap.to(itemsRef.current, {
+        y: "random(-20, 20)",
+        x: "random(-10, 10)",
+        duration: "random(3, 5)",
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
       });
 
-      // 🔥 SMOOTH PHYSICS LOOP
+      // 3. PHYSICS ENGINE LOOP
       const update = () => {
-        const ease = dragging.current
-          ? (isMobile ? 0.22 : 0.12)
-          : (isMobile ? 0.12 : 0.05);
+        const lerpFactor = dragging.current ? 0.15 : 0.06;
+        
+        current.current.x += (target.current.x - current.current.x) * lerpFactor;
+        current.current.y += (target.current.y - current.current.y) * lerpFactor;
 
-        current.current.x += (target.current.x - current.current.x) * ease;
-        current.current.y += (target.current.y - current.current.y) * ease;
-
-        const dx = current.current.x - last.current.x;
-        const tilt = gsap.utils.clamp(-12, 12, dx * 0.6);
+        const velocity = current.current.x - last.current.x;
+        const tilt = gsap.utils.clamp(-15, 15, velocity * 0.8);
 
         if (scrollContentRef.current) {
           gsap.set(scrollContentRef.current, {
@@ -92,7 +82,8 @@ export default function DraggableHaldiGallery() {
             if (el) {
               gsap.set(el, {
                 rotationY: tilt,
-                rotationX: -tilt * 0.3,
+                skewX: tilt * 0.1,
+                force3D: true
               });
             }
           });
@@ -100,143 +91,107 @@ export default function DraggableHaldiGallery() {
 
         last.current.x = current.current.x;
         last.current.y = current.current.y;
-
         requestAnimationFrame(update);
       };
 
       const raf = requestAnimationFrame(update);
       return () => cancelAnimationFrame(raf);
-
     }, containerRef);
-
     return () => ctx.revert();
   }, [isMobile]);
 
-  // Grab start
-  const handleStart = () => {
+  const handleStart = (e) => {
     dragging.current = true;
+    const point = e.touches ? e.touches[0] : e;
+    last.current.mouseX = point.clientX;
+    last.current.mouseY = point.clientY;
 
-    gsap.to(itemsRef.current, {
-      scale: 0.92,
-      duration: 0.25,
-      ease: "hope",
-    });
-
-    gsap.to(scrollContentRef.current, {
-      scale: 0.96,
-      duration: 0.25,
-      ease: "hope",
-    });
+    gsap.to(scrollContentRef.current, { scale: 0.98, duration: 0.6, ease: "boutique" });
   };
 
-  // Grab end
-  const handleEnd = () => {
-    dragging.current = false;
-
-    gsap.to(itemsRef.current, {
-      scale: 1,
-      duration: 0.5,
-      ease: "hope",
-    });
-
-    gsap.to(scrollContentRef.current, {
-      scale: 1,
-      duration: 0.5,
-      ease: "hope",
-    });
-
-    last.current.mouseX = null;
-    last.current.mouseY = null;
-  };
-
-  // 🔥 FAST MOBILE DRAG
   const handleMove = (e) => {
     if (!dragging.current) return;
-
     const point = e.touches ? e.touches[0] : e;
 
-    if (last.current.mouseX !== null) {
-      const dx = point.clientX - last.current.mouseX;
-      const dy = point.clientY - last.current.mouseY;
+    const dx = point.clientX - last.current.mouseX;
+    const dy = point.clientY - last.current.mouseY;
 
-      const speed = isMobile ? 2.2 : 0.8;
-
-      target.current.x += dx * speed;
-      target.current.y += dy * speed;
-    }
+    // Faster interaction for high-end feel
+    const multiplier = isMobile ? 1.8 : 1.2;
+    target.current.x += dx * multiplier;
+    target.current.y += dy * multiplier;
 
     last.current.mouseX = point.clientX;
     last.current.mouseY = point.clientY;
+  };
+
+  const handleEnd = () => {
+    dragging.current = false;
+    gsap.to(scrollContentRef.current, { scale: 1, duration: 0.8, ease: "expo.out" });
   };
 
   return (
     <section
       ref={containerRef}
       onMouseDown={handleStart}
-      onTouchStart={handleStart}
       onMouseMove={handleMove}
-      onTouchMove={(e) => {
-        e.preventDefault();
-        handleMove(e);
-      }}
       onMouseUp={handleEnd}
       onMouseLeave={handleEnd}
+      onTouchStart={handleStart}
+      onTouchMove={(e) => { e.preventDefault(); handleMove(e); }}
       onTouchEnd={handleEnd}
-      className="w-full overflow-hidden py-[12vh] bg-[#fdfbf7] h-[130vh] cursor-grab active:cursor-grabbing select-none"
-      style={{ perspective: "1200px" }}
+      className="relative w-full overflow-hidden bg-[#f0eee9] h-[120vh] cursor-grab active:cursor-grabbing select-none flex items-center justify-center"
+      style={{ perspective: "1500px" }}
     >
-
-      {/* Background */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
-        <h2 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15vw] font-[Canvas] text-[#c9a96e] whitespace-nowrap">
-          HALDI MOMENTS
+      {/* Background Decorative Type */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none">
+        <h2 className="text-[25vw] font-[Canvas] text-white whitespace-nowrap leading-none">
+          HALDI 2026
         </h2>
-        <svg viewBox="0 0 200 200" className="w-[80%] h-[80%] fill-[#EAB308]">
-          <path ref={blobRef} transform="translate(100 100)" />
-        </svg>
       </div>
 
-      <div className='absolute top-10 left-10 '>
-        <h1 className='font-[Canvas] xl:text-[4vw] text-[6.5vw] text-black font-light'>Drag to View Images</h1>
+      {/* Narrative Label */}
+      <div className="absolute top-12 left-10 z-50 pointer-events-none">
+        <span className="text-[10px] tracking-[0.8em] text-[#c9a96e] uppercase block mb-2 opacity-50">Experimental Gallery</span>
+        <h1 className="font-[Canvas] text-3xl md:text-5xl text-white font-light tracking-tighter">
+          The <span className="italic text-[#c9a96e]">Golden</span> Ritual
+        </h1>
       </div>
 
       {/* Canvas */}
       <div
         ref={scrollContentRef}
-        className={`relative will-change-transform ${
-          isMobile ? 'w-[220vw] h-[200vh]' : 'w-[140vw] h-[150vh]'
-        }`}
+        className={`relative will-change-transform ${isMobile ? 'w-[200vw] h-[150vh]' : 'w-[120vw] h-[120vh]'}`}
       >
         {HALDI_ITEMS.map((item, i) => (
           <div
             key={i}
             ref={(el) => (itemsRef.current[i] = el)}
             className="gallery-item absolute group"
-            style={{
-              top: item.top,
-              left: item.left,
-              width: item.w,
-              zIndex: item.z,
-            }}
+            style={{ top: item.top, left: item.left, width: item.w, zIndex: item.z }}
           >
-            <div className="relative">
-              <div className="relative aspect-[4/5] overflow-hidden">
+            <div className="relative p-2 bg-white/[0.03] backdrop-blur-sm border border-white/10 rounded-sm">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
                 <Image
                   src={item.src}
                   alt={item.label}
                   fill
-                  className="object-cover grayscale-[0.2] transition-all duration-700 group-hover:scale-105"
+                  className="object-cover grayscale-[0.6] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
 
-              <div className="mt-4 flex justify-between text-[10px]">
-                <span className="uppercase text-black/40">{item.label}</span>
-                <span className="italic text-[#c9a96e]">0{i + 1}</span>
+              <div className="mt-4 flex justify-between items-center px-1">
+                <span className="text-[9px] tracking-[0.3em] uppercase text-white/40">{item.label}</span>
+                <span className="font-serif italic text-[#c9a96e] text-xs">0{i + 1}</span>
               </div>
             </div>
           </div>
         ))}
       </div>
+
+      {/* Grain Overlay (Inherited from Hero) */}
+      <div className="absolute inset-0 pointer-events-none z-[100] opacity-[0.03] bg-[url('https://res.cloudinary.com/dz8on7m9p/image/upload/v1645000000/noise_filter.png')]" />
     </section>
   );
 }

@@ -113,7 +113,7 @@ const WeddingCard = () => {
                 <h3 className="text-3xl italic border-b border-stone-200 pb-4">The Ceremony</h3>
                 <div className="space-y-2">
                     <p className="text-xl font-medium uppercase tracking-tight">Friday, 20th Feb 2026</p>
-                    <p className="text-lg italic text-stone-500">At Four 11.45'Clock in the Devine Hours</p>
+                    <p className="text-lg italic text-stone-500">At 11.29'Clock in the Devine Hours</p>
                 </div>
                 <p className="text-sm uppercase tracking-[0.2em] leading-loose text-stone-600">
                   The Kothagudem Club <br />

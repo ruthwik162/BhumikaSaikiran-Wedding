@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./Components/Navbar";
 import { ViewTransitions } from "next-view-transitions";
 import LenisProvider from "./LenisProvider";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -49,7 +50,7 @@ export default function RootLayout({ children }) {
 
           </LenisProvider>
         </ViewTransitions>
-
+        <Analytics />
       </body>
     </html>
   );
