@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { ReactLenis } from '@studio-freight/react-lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { hero } from '@/public/assets/assets';
@@ -12,7 +11,7 @@ import TextY from './TextY';
 import { CustomEase } from 'gsap/CustomEase';
 
 if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger,CustomEase);
+  gsap.registerPlugin(ScrollTrigger, CustomEase);
 }
 
 export default function StorySection() {
@@ -222,158 +221,156 @@ export default function StorySection() {
 
       <div className="we-grain" />
 
-      <ReactLenis root options={{ lerp: 0.08 }}>
-        <div ref={mainRef} className="bg-[#0a0a09] text-white relative overflow-hidden">
+      <div ref={mainRef} className="bg-[#0a0a09] text-white relative overflow-hidden">
 
 
-          {/* ── BACKGROUND LAYER ────────────────────────────────── */}
-          <div className="fixed inset-0 z-0">
+        {/* ── BACKGROUND LAYER ────────────────────────────────── */}
+        <div className="fixed inset-0 z-0">
 
-            <div ref={bgRef} className="relative w-full h-[140vh]">
-              <div className="grid grid-cols-2 h-full w-full">
-                <div className="relative w-full h-full">
-                  <Image
-                    src={hero.bhumicouple}
-                    alt="Background Left"
-                    fill
-                    priority
-                    sizes="50vw"
-                    className="object-cover opacity-90 grayscale-[0.2]"
-                  />
-                  <div className='absolute top-1/2 px-[5vw] left-0'>
-                    <h2 className="we-stagger-child font-[Canvas]  text-[1.1rem] md:text-6xl mb-1">A Calm Strength</h2>
+          <div ref={bgRef} className="relative w-full h-[140vh]">
+            <div className="grid grid-cols-2 h-full w-full">
+              <div className="relative w-full h-full">
+                <Image
+                  src={hero.bhumicouple}
+                  alt="Background Left"
+                  fill
+                  priority
+                  sizes="50vw"
+                  className="object-cover opacity-90 grayscale-[0.2]"
+                />
+                <div className='absolute top-1/2 px-[5vw] left-0'>
+                  <h2 className="we-stagger-child font-[Canvas]  text-[1.1rem] md:text-6xl mb-1">A Calm Strength</h2>
 
-                    <TextY>
-                      <p className="we-stagger-child font-['Cormorant_Garamond'] text-white text-[0.8rem] md:text-xl leading-tight max-w-sm md:max-w-md">
-                        Sai Kiran — a presence that defines stability. Like the earth beneath the roots, quiet and unyielding.
-                      </p>
-                    </TextY>
-                  </div>
+                  <TextY>
+                    <p className="we-stagger-child font-['Cormorant_Garamond'] text-white text-[0.8rem] md:text-xl leading-tight max-w-sm md:max-w-md">
+                      Sai Kiran — a presence that defines stability. Like the earth beneath the roots, quiet and unyielding.
+                    </p>
+                  </TextY>
                 </div>
-
-                {/* RIGHT IMAGE */}
-                <div className="relative w-full h-full">
-                  <Image
-                    src={hero.bhumi}
-                    alt="Background Right"
-                    fill
-                    priority
-                    sizes="50vw"
-                    className="object-cover opacity-90 grayscale-[0.2]"
-                  />
-                  <div className='absolute top-1/2 px-[5vw] right-0'>
-                    <h2 className="we-stagger-child font-light font-[Canvas]  text-[1.1rem] md:text-6xl mb-1">A Radiant Light</h2>
-                    <TextY>
-                      <p className="we-stagger-child font-['Cormorant_Garamond'] text-white/60 text-[0.8rem] md:text-xl leading-tight max-w-sm md:max-w-md">
-                        Bhumika — a soul reflecting pure warmth. A light that illuminates the architecture of the heart.
-                      </p>
-                    </TextY>
-                  </div>
-                </div>
-
               </div>
 
-              {/* OVERLAY */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
+              {/* RIGHT IMAGE */}
+              <div className="relative w-full h-full">
+                <Image
+                  src={hero.bhumi}
+                  alt="Background Right"
+                  fill
+                  priority
+                  sizes="50vw"
+                  className="object-cover opacity-90 grayscale-[0.2]"
+                />
+                <div className='absolute top-1/2 px-[5vw] right-0'>
+                  <h2 className="we-stagger-child font-light font-[Canvas]  text-[1.1rem] md:text-6xl mb-1">A Radiant Light</h2>
+                  <TextY>
+                    <p className="we-stagger-child font-['Cormorant_Garamond'] text-white/60 text-[0.8rem] md:text-xl leading-tight max-w-sm md:max-w-md">
+                      Bhumika — a soul reflecting pure warmth. A light that illuminates the architecture of the heart.
+                    </p>
+                  </TextY>
+                </div>
+              </div>
+
             </div>
-          </div>
 
-          {/* ── CONTENT LAYER ──────────────────────────────────── */}
-          <div className="relative z-1">
-
-            {/* SECTION 1: HERO */}
-            <section className=" py-[10vh] h-screen  flex flex-col items-center z-10 justify-center px-[8vw] relative">
-              <div className="absolute top-[8vh] left-[8vw] right-[8vw] flex items-center gap-6">
-                <div className="we-hero-rule h-[1px] w-12 bg-[var(--gold)]" />
-                <p className="we-hero-eyebrow font-['Montserrat'] font-extralight text-[0.6rem] tracking-[0.5em] uppercase text-[var(--gold)]">
-                  A Cinematic Preserved Memory · 2026
-                </p>
-              </div>
-
-              <div className="text-left">
-                <div className="we-title-clip">
-                  <h1 className="we-title-name font-[Canvas] md:text-[6rem] md:text-left text-[12vw] leading-[0.9] tracking-tighter">Sai Kiran</h1>
-                </div>
-                <div className="we-title-clip">
-                  <h1 className="we-title-name font-[Canvas] italic font-light md:text-[6rem] md:text-left text-[9vw] text-[var(--gold)] leading-[0.98]">& Bhumika</h1>
-                </div>
-              </div>
-
-              <div className="we-hero-sub mt-10 flex items-center gap-6 opacity-0">
-                <div className="h-[1px] w-8 bg-white/20" />
-                <p className="font-['Montserrat'] font-extralight text-[0.55rem] tracking-[0.4em] uppercase text-white/50">
-                  Hyderabad · The Beginning of Always
-                </p>
-                <div className="h-[1px] w-8 bg-white/20" />
-              </div>
-            </section>
-
-            {/* SECTION 2: THE EDITORIAL GRID */}
-            <section className="py-[2vh] px-[10vw] relative">
-              <div className='absolute inset-0 z-10 '>
-                <InteractiveGallery />
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-2 gap-[10vw] items-center">
-
-                {/* Left Column */}
-                <div className="space-y-[5vh] relative">
-                  {/* 9:16 Portrait Image */}
-                  <div className="we-image-reveal we-portrait-tile we-float w-4/5 ml-auto">
-                    <Image src={hero.couple2} alt="Portrait" fill className="object-cover object-[30%_center]" />
-                  </div>
-                </div>
-
-                {/* Right Column (Staggered Down) */}
-                <div className="md:space-y-[5vh] md:mt-[30vh]">
-                  {/* 9:16 Portrait Image */}
-                  <div className="we-image-reveal we-portrait-tile we-float w-4/5">
-                    <Image src={hero.bhumi} alt="Portrait" fill className="object-cover w-full h-full" />
-                  </div>
-                </div>
-
-              </div>
-            </section>
-
-            {/* SECTION 3: DATE & DETAILS */}
-            <section className="min-h-screen flex flex-col justify-center px-[10vw] py-20">
-              <div className="we-reveal-stagger mb-16">
-                <p className="we-stagger-child text-[var(--gold)] text-[1.01rem]  mb-4">New Chapter Begin Date</p>
-                <div className="we-grow-line h-[1px] w-full bg-[var(--gold-dim)] mb-1" />
-
-                <div className="flex flex-col items-baseline gap-8 md:gap-1">
-                  <div className="flex items-baseline gap-4">
-                    <span className="font-['PP_Neue_Montreal'] font-light text-6xl md:text-[6rem] leading-none"><RollingNumber value={12} /></span>
-                    <span className="font-['PP_Neue_Montreal'] italic text-4xl text-[var(--gold)] opacity-40">/</span>
-                    <span className="font-['PP_Neue_Montreal'] text-6xl md:text-[6rem] leading-none"><RollingNumber value={2} delay={0.2} /></span>
-                    <span className="font-['PP_Neue_Montreal'] italic text-4xl text-[var(--gold)] opacity-40">/</span>
-                    <span className="font-['PP_Neue_Montreal'] text-6xl md:text-[6rem] leading-tight"><RollingNumber value={26} delay={0.4} /></span>
-                  </div>
-
-                  <div className="border-l border-[var(--gold-dim)] pl-8">
-                    <p className="font-['PP_Neue_Montreal'] text-[0.55rem]  uppercase text-white/40 mb-2">Location</p>
-                    <p className="font-['PP_Neue_Montreal']  text-2xl md:text-2xl text-white/80">Hyderabad,Telangana</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* SECTION 4: QUOTE CARD */}
-            <section className="min-h-screen flex items-start justify-start px-[10vw]">
-              <div className=" we-glass p-12 md:p-24 max-w-4xl w-full relative">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--gold)]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-                <span className="font-['PP_Neue_Montreal'] absolute inset-0 text-[40rem] text-[var(--gold)] leading-none opacity-20 block mb-[-2rem]">“</span>
-                <TextY>
-                  <p className="font-['PP_Neue_Montreal'] tracking-tight text-xl md:text-5xl text-white/90 leading-tight mb-12 relative z-10">
-                    In your light, I learn how to love. In your beauty, how to make poems.
-                  </p>
-
-                </TextY>
-              </div>
-            </section>
-
+            {/* OVERLAY */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
           </div>
         </div>
-      </ReactLenis>
+
+        {/* ── CONTENT LAYER ──────────────────────────────────── */}
+        <div className="relative z-1">
+
+          {/* SECTION 1: HERO */}
+          <section className=" py-[10vh] h-screen  flex flex-col items-center z-10 justify-center px-[8vw] relative">
+            <div className="absolute top-[8vh] left-[8vw] right-[8vw] flex items-center gap-6">
+              <div className="we-hero-rule h-[1px] w-12 bg-[var(--gold)]" />
+              <p className="we-hero-eyebrow font-['Montserrat'] font-extralight text-[0.6rem] tracking-[0.5em] uppercase text-[var(--gold)]">
+                A Cinematic Preserved Memory · 2026
+              </p>
+            </div>
+
+            <div className="text-left">
+              <div className="we-title-clip">
+                <h1 className="we-title-name font-[Canvas] md:text-[6rem] md:text-left text-[12vw] leading-[0.9] tracking-tighter">Sai Kiran</h1>
+              </div>
+              <div className="we-title-clip">
+                <h1 className="we-title-name font-[Canvas] italic font-light md:text-[6rem] md:text-left text-[9vw] text-[var(--gold)] leading-[0.98]">& Bhumika</h1>
+              </div>
+            </div>
+
+            <div className="we-hero-sub mt-10 flex items-center gap-6 opacity-0">
+              <div className="h-[1px] w-8 bg-white/20" />
+              <p className="font-['Montserrat'] font-extralight text-[0.55rem] tracking-[0.4em] uppercase text-white/50">
+                Hyderabad · The Beginning of Always
+              </p>
+              <div className="h-[1px] w-8 bg-white/20" />
+            </div>
+          </section>
+
+          {/* SECTION 2: THE EDITORIAL GRID */}
+          <section className="py-[2vh] px-[10vw] relative">
+            <div className='absolute inset-0 z-10 '>
+              <InteractiveGallery />
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-2 gap-[10vw] items-center">
+
+              {/* Left Column */}
+              <div className="space-y-[5vh] relative">
+                {/* 9:16 Portrait Image */}
+                <div className="we-image-reveal we-portrait-tile we-float w-4/5 ml-auto">
+                  <Image src={hero.couple2} alt="Portrait" fill className="object-cover object-[30%_center]" />
+                </div>
+              </div>
+
+              {/* Right Column (Staggered Down) */}
+              <div className="md:space-y-[5vh] md:mt-[30vh]">
+                {/* 9:16 Portrait Image */}
+                <div className="we-image-reveal we-portrait-tile we-float w-4/5">
+                  <Image src={hero.bhumi} alt="Portrait" fill className="object-cover w-full h-full" />
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          {/* SECTION 3: DATE & DETAILS */}
+          <section className="min-h-screen flex flex-col justify-center px-[10vw] py-20">
+            <div className="we-reveal-stagger mb-16">
+              <p className="we-stagger-child text-[var(--gold)] text-[1.01rem]  mb-4">New Chapter Begin Date</p>
+              <div className="we-grow-line h-[1px] w-full bg-[var(--gold-dim)] mb-1" />
+
+              <div className="flex flex-col items-baseline gap-8 md:gap-1">
+                <div className="flex items-baseline gap-4">
+                  <span className="font-['PP_Neue_Montreal'] font-light text-6xl md:text-[6rem] leading-none"><RollingNumber value={12} /></span>
+                  <span className="font-['PP_Neue_Montreal'] italic text-4xl text-[var(--gold)] opacity-40">/</span>
+                  <span className="font-['PP_Neue_Montreal'] text-6xl md:text-[6rem] leading-none"><RollingNumber value={2} delay={0.2} /></span>
+                  <span className="font-['PP_Neue_Montreal'] italic text-4xl text-[var(--gold)] opacity-40">/</span>
+                  <span className="font-['PP_Neue_Montreal'] text-6xl md:text-[6rem] leading-tight"><RollingNumber value={26} delay={0.4} /></span>
+                </div>
+
+                <div className="border-l border-[var(--gold-dim)] pl-8">
+                  <p className="font-['PP_Neue_Montreal'] text-[0.55rem]  uppercase text-white/40 mb-2">Location</p>
+                  <p className="font-['PP_Neue_Montreal']  text-2xl md:text-2xl text-white/80">Hyderabad,Telangana</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* SECTION 4: QUOTE CARD */}
+          <section className="min-h-screen flex items-start justify-start px-[10vw]">
+            <div className=" we-glass p-12 md:p-24 max-w-4xl w-full relative">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--gold)]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+              <span className="font-['PP_Neue_Montreal'] absolute inset-0 text-[40rem] text-[var(--gold)] leading-none opacity-20 block mb-[-2rem]">“</span>
+              <TextY>
+                <p className="font-['PP_Neue_Montreal'] tracking-tight text-xl md:text-5xl text-white/90 leading-tight mb-12 relative z-10">
+                  In your light, I learn how to love. In your beauty, how to make poems.
+                </p>
+
+              </TextY>
+            </div>
+          </section>
+
+        </div>
+      </div>
     </>
   );
 }
