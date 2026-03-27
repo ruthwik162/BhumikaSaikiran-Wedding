@@ -5,6 +5,7 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { hero } from '@/public/assets/assets';
+import TextY from './TextY';
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -43,13 +44,13 @@ const WeddingCard = () => {
         duration: 1.2,
         ease: "power4.out",
       })
-      .from(".reveal-item", {
-        y: 30,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 1,
-        ease: "power3.out",
-      }, "-=0.8");
+        .from(".reveal-item", {
+          y: 30,
+          opacity: 0,
+          stagger: 0.1,
+          duration: 1,
+          ease: "power3.out",
+        }, "-=0.8");
 
       // 3. Staggered Itinerary Reveal
       gsap.from(".itinerary-item", {
@@ -70,9 +71,9 @@ const WeddingCard = () => {
 
   return (
     <div ref={containerRef} className="relative w-full bg-[#fdfbf7]">
-      
+
       {/* ─── PINNED BACKGROUND ─── */}
-      <div className="relative h-[300vh] w-full">
+      <div className="relative h-[350vh] md:h-[300vh] w-full">
         <div className="sticky top-0 h-screen w-full overflow-hidden">
           <div ref={bgImageRef} className="relative h-full w-full scale-125 transition-transform duration-500">
             <Image
@@ -89,43 +90,43 @@ const WeddingCard = () => {
 
         {/* ─── SCROLLING CONTENT ─── */}
         <div className="absolute top-0 right-0 w-full z-10 flex justify-end px-6 md:px-2 py-[5vh]">
-          
-          <div 
+
+          <div
             ref={cardRef}
             className="w-full md:w-[60%] bg-white/90 backdrop-blur-2xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.4)] rounded-sm p-8 md:p-24 border border-white/40 mb-[2vh]"
           >
-            
+
             {/* Header */}
             <div className="text-center mb-24 space-y-6">
               <span className="reveal-item font-mono text-[10px] uppercase tracking-[0.6em] text-[#b39359] block">
                 Save The Date
               </span>
               <h1 className="reveal-item font-['Cormorant_Garamond'] text-6xl md:text-9xl text-stone-900 leading-[0.9] tracking-tighter">
-                Sai Kiran <br className="md:hidden" /> 
+                Sai Kiran <br className="md:hidden" />
                 <span className="italic font-light">&</span> Bhumika
               </h1>
               <div className="reveal-item h-[1px] w-32 bg-[#b39359]/40 mx-auto mt-12" />
             </div>
 
             {/* Details Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 font-['Cormorant_Garamond'] text-stone-800">
-              <div className="reveal-item space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-['Cormorant_Garamond'] text-stone-800">
+              <div className="reveal-item space-y-2">
                 <h3 className="text-3xl italic border-b border-stone-200 pb-4">The Ceremony</h3>
                 <div className="space-y-2">
-                    <p className="text-xl font-medium uppercase tracking-tight">Friday, 20th Feb 2026</p>
-                    <p className="text-lg italic text-stone-500">At 11.29'Clock in the Devine Hours</p>
+                  <p className="text-xl font-medium uppercase tracking-tight">Friday, 20th Feb 2026</p>
+                  <p className="text-lg italic text-stone-500">At 11.29'Clock in the Devine Hours</p>
                 </div>
-                <p className="text-sm uppercase tracking-[0.2em] leading-loose text-stone-600">
+                <p className="text-sm font-serif italic tracking-tight leading-tight text-stone-600">
                   The Kothagudem Club <br />
                   Kothagudem, India
                 </p>
               </div>
 
-              <div className="reveal-item space-y-8">
-                <h3 className="text-3xl italic border-b border-stone-200 pb-4">The Celebration</h3>
+              <div className="reveal-item space-y-2">
+                <h3 className="text-3xl font-[Canvas]  border-b border-stone-200 pb-4">The Celebration</h3>
                 <div className="space-y-2">
-                    <p className="text-xl font-medium uppercase tracking-tight">Cocktails & Dinner to follow</p>
-                    <p className="text-lg italic text-stone-500">Black Tie Optional</p>
+                  <p className="text-xl font-medium uppercase tracking-tight">Cocktails & Dinner to follow</p>
+                  <p className="text-lg italic text-stone-500">Black Tie Optional</p>
                 </div>
                 <button className="group relative mt-4 px-10 py-4 overflow-hidden border border-[#b39359] text-[#b39359] transition-all duration-500 hover:text-white">
                   <div className="absolute inset-0 bg-[#b39359] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
@@ -136,17 +137,20 @@ const WeddingCard = () => {
 
             {/* Visual Quote Section */}
             <div className="my-40 text-center px-4">
-                <div className="w-px h-24 bg-[#b39359]/30 mx-auto mb-12" />
-                <p className="reveal-item font-['Cormorant_Garamond'] text-3xl md:text-5xl italic text-stone-700 max-w-2xl mx-auto leading-[1.3] font-light">
-                    "In the garden of humanity, every love story is a unique flower, and ours is finally in full bloom."
+              <div className="w-px h-24 bg-[#b39359]/30 mx-auto mb-5" />
+              <TextY>
+                <p className="reveal-item font-['Cormorant_Garamond'] text-3xl md:text-5xl italic text-stone-700 max-w-2xl mx-auto leading-[0.9] font-light">
+                  "In the garden of humanity, every love story is a  unique flower, and ours is finally in full bloom."
                 </p>
-                <div className="w-px h-24 bg-[#b39359]/30 mx-auto mt-12" />
+              </TextY>
+
+              <div className="w-px h-24 bg-[#b39359]/30 mx-auto mt-12" />
             </div>
 
             {/* Itinerary Section */}
             <div className="space-y-5 itinerary-container">
               <h2 className="reveal-item font-['Cormorant_Garamond'] text-[#b39359] text-5xl text-center font-light tracking-tight">The Itinerary</h2>
-              
+
               <div className="space-y-5 max-w-xl mx-auto">
                 {[
                   { time: '10:00 AM', event: 'The Haldi Ritual', desc: 'A splash of yellow and a lifetime of sunshine.' },

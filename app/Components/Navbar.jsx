@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Link } from 'next-view-transitions';
+import { ArrowBigRight, ArrowUpRight } from 'lucide-react';
 
 const Navbar = () => {
   return (
@@ -27,9 +28,9 @@ const Navbar = () => {
         
         <Link 
           href="/gallery" 
-          className="text-[15px] uppercase font-medium text-white mix-blend-difference  font-[MyFont2] "
+          className="text-[15px] uppercase font-medium flex items-center justify-center gap-1 text-white mix-blend-difference  font-[MyFont2] "
         >
-          Gallery
+          Gallery <span className='w-8 h-8 inline-block'><ArrowUpRight strokeWidth={2} /></span>
         </Link>
 
         {/* Dynamic Indicator (Optional UI touch) */}
