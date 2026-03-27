@@ -33,7 +33,6 @@ const Navbar = () => {
         </Link>
 
         {/* Dynamic Indicator (Optional UI touch) */}
-        <div className="w-1 h-1 bg-white rounded-full opacity-40 ml-[-10px]" />
       </div>
       
     </nav>

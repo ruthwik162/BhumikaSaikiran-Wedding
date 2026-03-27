@@ -38,8 +38,8 @@ const WeddingCard = () => {
       });
 
       tl.from(cardRef.current, {
-        y: 100,
-        opacity: 0,
+        y: 500,
+        opacity: 1,
         duration: 1.2,
         ease: "power4.out",
       })
