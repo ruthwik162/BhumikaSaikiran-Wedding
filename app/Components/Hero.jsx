@@ -69,7 +69,7 @@ export default function Hero() {
         ))}
       </div>
 
-      <section className="relative min-h-[120vh] px-6 md:px-12">
+      <section className="relative min-h-[100vh] px-6 md:px-12">
 
 
         {/* FLOATING PHILOSOPHY TEXT (Mobile-First Empty Spaces) */}
@@ -90,30 +90,30 @@ export default function Hero() {
         </div>
 
         {/* MAIN TITLE - Mix Blend Difference for Cinematic Depth */}
-        <div className="absolute top-[8%] right-0 w-full z-20 pointer-events-none mix-blend-difference invert">
-          <h1 className="flex flex-col items-start md:ml-[5%] ml-[10%]">
+        <div className="absolute top-[8%] right-0 w-full z-40 pointer-events-none mix-blend-difference invert">
+          <h1 className="flex flex-col items-end md:mr-[5%] ml-[10%]">
             <span className="block overflow-hidden pb-2">
               <span className="hero-chars inline-block text-[15vw] md:text-[5vw] font-light font-[Canvas] leading-[0.95] tracking-tighter uppercase">Saikiran</span>
             </span>
-            <span className="block overflow-hidden py-1">
-              <span className="hero-chars inline-block text-[13vw] md:text-[5vw] uppercase font-[Canvas] text-[#c9a96e] leading-[0.85] tracking-tighter">& Bhumika</span>
+            <span className="block overflow-hidden md:-mt-4" >
+              <span className="hero-chars inline-block text-[13vw] md:text-[5vw] uppercase font-[Canvas] text-[#c9a96e] leading-[0.9] tracking-tighter">& Bhumika</span>
             </span>
           </h1>
         </div>
 
         <div className="absolute bottom-[2%] right-0 w-full z-50 pointer-events-none mix-blend-difference invert">
           <h1 className="flex flex-col items-start md:ml-[5%] ml-[10%]">
-            <span className="block overflow-hidden pb-2">
-              <span className="hero-chars inline-block text-[10vw] [word-spacing:50px] md:text-[8vw] font-light font-[Canvas] leading-[0.95] tracking-tighter uppercase">A Love Story</span>
+            <span className="block overflow-hidden pb-2 max-w-xs">
+              <span className="hero-chars inline-block text-[10vw] [word-spacing:15px] md:text-[4vw]  font-light font-[Canvas] leading-[0.95] tracking-tighter uppercase"><span className='inline-block lowercase'>A</span> Love <span className='inline-block lowercase'>Story</span></span>
             </span>
-            <span className="block overflow-hidden py-1">
-              <span className="hero-chars inline-block text-[7vw] md:text-[5vw] uppercase font-[Canvas] text-[#c9a96e] leading-[0.85] tracking-tighter">Beautifully Preserved Forever</span>
+            <span className="block overflow-hidden py-1 max-w-sm">
+              <span className="hero-chars inline-block text-[7vw] md:text-[4vw]  font-[Canvas] text-[#c9a96e] leading-[0.85] tracking-tighter">Beautifully Preserved Forever</span>
             </span>
           </h1>
         </div>
 
         {/* ASYMMETRIC IMAGE COMPOSITION */}
-        <div className="relative pt-[30vh] md:pt-[15vh] max-w-[1400px] mx-auto grid grid-cols-12 gap-4">
+        <div className="relative pt-[30vh] md:pt-[10vh] max-w-[1400px] mx-auto grid grid-cols-12 gap-4">
 
           {/* Main Portrait - Offset Center */}
           <div className="parallax hero-img col-span-10 col-start-2 md:col-span-5 md:col-start-4 aspect-[4/5] relative z-10 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.1)]" data-speed="0.1">

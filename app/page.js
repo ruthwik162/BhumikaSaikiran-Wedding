@@ -9,7 +9,7 @@ import Footer from './Components/Footer'
 
 const page = () => {
   return (
-    <div>
+    <div className='relative'>
       <Hero />
       <StorySection />
       <HaldiSection />

@@ -60,11 +60,11 @@ const images = [
     {
         src: hero.bhumi,
         size: {
-            mobile: 'w-[20vw]',
+            mobile: 'w-[40vw]',
             desktop: 'w-[12vw]'
         },
         pos: {
-            mobile: 'top-[80%] right-[10%]',
+            mobile: 'top-[50%] right-[10%]',
             desktop: 'top-[85%] right-[12%]'
         },
         speed: 0.05,
@@ -78,7 +78,7 @@ const images = [
             desktop: 'w-[14vw]'
         },
         pos: {
-            mobile: 'bottom-[-200vw] left-[5%]',
+            mobile: 'bottom-[-50vw] left-[5%]',
             desktop: 'top-[115%] left-[5%]'
         },
         speed: 0.02,
@@ -88,11 +88,11 @@ const images = [
     {
         src: hero.couple2,
         size: {
-            mobile: 'w-[55vw]',
+            mobile: 'w-[50vw]',
             desktop: 'w-[12vw]'
         },
         pos: {
-            mobile: 'top-[140%] right-[10%]',
+            mobile: 'top-[110%] right-[10%]',
             desktop: 'top-[145%] right-[20%]'
         },
         speed: 0.04,

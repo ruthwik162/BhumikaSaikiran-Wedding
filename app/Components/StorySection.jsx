@@ -157,8 +157,8 @@ export default function StorySection() {
                 Bhumika captures the warmth. A spirit that reflects the golden hour, turning simple moments into memories that glow with intention.
               </p>
             </div>
-            <div className="md:col-span-7 we-parallax order-1 md:order-2" data-speed="0.2">
-              <div className="relative aspect-[4/5] md:aspect-[16/10] overflow-hidden rounded-sm group">
+            <div className="md:col-span-4 we-parallax order-1 md:order-2" data-speed="0.2">
+              <div className="relative aspect-[4/5] md:aspect-[9/16] overflow-hidden rounded-sm group">
                 <Image src={hero.bhumi} fill className="object-cover  transition-all duration-1000" alt="Bhumi" />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-700" />
               </div>
